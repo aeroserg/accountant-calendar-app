@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+
+:root {
+  /* Цвета интерфейса */
+  --background: #F5F5F5;
+  --foreground: #FFFFFF;
+
+  /* Цветовая палитра */
+  --color-main: #90B891;
+  --color-main-light: #F2F5EC;
+  --color-secondary: #FFA2B8;
+  --color-background-cell: #EAEAEA;
+  --color-dark: #000000;
+  --color-contrast: #FF9A2F;
+
+  /* Шрифты */
+  --font-inter: 'Inter', sans-serif;
+  --font-geologica: 'Geologica', sans-serif;
+}
+.font-inter {
+  font-family: var(--font-inter);
+}
+
+.font-geologica {
+  font-family: var(--font-geologica);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #F5F5F5;
+    --foreground: #FFFFFF;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
+body {
+  background: var(--background);
+  color: var(--color-dark);
+  font-family: var( --font-inter);
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "date_newes",
+  "info": {
+    "singularName": "date-news",
+    "pluralName": "date-newes",
+    "displayName": "Важные даты",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "text": {
+      "type": "blocks",
+      "required": true
+    },
+    "date": {
+      "type": "datetime",
+      "required": true,
+      "unique": true
+    }
+  }
+}

@@ -1,0 +1,15 @@
+
+services:
+  backend:
+    build:
+      context: ./strapi-backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./strapi-backend/public/uploads:${UPLOAD_FOLDER:-./public/uploads}
+    restart: always
+
+  calendar-app:
+    build:
+      context: ./calendar-notes-app
+      dockerfile: Dockerfile
+    restart: always
