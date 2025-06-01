@@ -1,15 +1,22 @@
-
 services:
   backend:
     build:
       context: ./strapi-backend
       dockerfile: Dockerfile
+    ports:
+      - "4000:1337"
     volumes:
-      - ./strapi-backend/public/uploads:${UPLOAD_FOLDER:-./public/uploads}
+      - ./strapi-backend/public/uploads:/app/public/uploads
     restart: always
+    depends_on: []
 
-  calendar-app:
+  frontend:
     build:
       context: ./calendar-notes-app
       dockerfile: Dockerfile
+    environment:
+      NEXT_PUBLIC_API_URL: https://admin.buhplanner.ru
+    ports:
+      - "3000:3000"
     restart: always
+    depends_on: []
