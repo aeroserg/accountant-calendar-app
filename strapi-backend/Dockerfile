@@ -7,8 +7,7 @@ RUN npm ci
 
 COPY . .
 
-# Для Strapi не нужен build, если не кастомный пайплайн. Если используете build: уберите если не нужен.
-# RUN npm run build
+RUN npm run build
 
 EXPOSE 1337
 
