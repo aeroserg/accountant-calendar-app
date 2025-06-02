@@ -3,6 +3,7 @@
 import "./globals.css";
 import { Inter, Geologica } from "next/font/google";
 import type { Metadata } from "next";
+import ClientLayout from "./client-layout";
 const inter = Inter({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -82,8 +83,7 @@ export default async function RootLayout({
   return (
     <html lang="ru" className={`${inter.variable} ${geo.variable}`}>
       <body className="font-inter bg-white text-gray-900">
-            {children}
-
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );
