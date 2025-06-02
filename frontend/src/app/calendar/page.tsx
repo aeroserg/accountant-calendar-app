@@ -156,10 +156,10 @@ export default function CalendarPage() {
         <div className="flex xl:hidden flex-row justify-between items-center mb-4 gap-3 w-full">
           {/* Дата (отдельным блоком) */}
           <div className="flex xl:flex-col flex-row items-baseline xl:items-left min-w-[70px] xl:pt-2 ">
-            <div className="text-2xl font-inter font-bold font-geologica leading-none pr-2">
+            <div className="text-[22px]  font-inter font-bold font-geologica leading-none pr-1">
               {parseInt(selectedDate.slice(8, 10), 10)}
             </div>
-            <div className="text-2xl font-inter font-bold font-geologica leading-none">
+            <div className="text-[20px] font-inter font-bold font-geologica leading-none">
               {getRuMonthDativ(parseInt(selectedDate.slice(5, 7), 10))}
             </div>
           </div>
