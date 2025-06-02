@@ -87,7 +87,7 @@ export default function CalendarPage() {
 
   // --- Обработчики модалки заметки ---
   function handleAddNoteClick() {
-    setModalTitle(`Заметка от ${new Date().toLocaleDateString()}`);
+    setModalTitle(`Новая заметка`);
     setModalText("");
     setSelectedTime(getLocalTimeString());
     setModalDate(selectedDate);
@@ -151,22 +151,22 @@ export default function CalendarPage() {
       </aside>
 
       {/* ---- Контент ---- */}
-      <main className="flex-1 flex xl:flex-row flex-col rounded-[32px] bg-[var(--foreground)] xl:p-8 p-4 mb-4 gap-4 2xl:gap-8">
+      <main className="flex-1 flex xl:flex-row flex-col xl:rounded-[32px] rounded-[20px] bg-[var(--foreground)] xl:p-8 p-4 mb-4 gap-4 2xl:gap-8">
         {/* --------- Мобильный: дата + табы --------- */}
         <div className="flex xl:hidden flex-row justify-between items-center mb-4 gap-3 w-full">
           {/* Дата (отдельным блоком) */}
-          <div className="flex flex-col items-left min-w-[70px] pt-2">
-            <div className="text-2xl font-inter font-normal leading-none">
+          <div className="flex xl:flex-col flex-row items-baseline xl:items-left min-w-[70px] xl:pt-2 ">
+            <div className="text-2xl font-inter font-bold font-geologica leading-none pr-2">
               {parseInt(selectedDate.slice(8, 10), 10)}
             </div>
-            <div className="text-lg font-inter font-normal leading-none">
+            <div className="text-2xl font-inter font-bold font-geologica leading-none">
               {getRuMonthDativ(parseInt(selectedDate.slice(5, 7), 10))}
             </div>
           </div>
           {/* Табики */}
           <div className="flex flex-row gap-2">
             <button
-              className={`cursor-pointer rounded-[12px] px-6 py-1.5 text-base font-geologica font-semibold border transition
+              className={`cursor-pointer rounded-[12px] px-4 py-1 text-base font-geologica font-normal border transition
                 ${activeTab === "info"
                   ? "bg-[var(--color-main)] text-white"
                   : "bg-[var(--color-main-light)] text-[var(--color-main)] border-[var(--color-main)]"
@@ -176,7 +176,7 @@ export default function CalendarPage() {
               Инфо
             </button>
             <button
-              className={`cursor-pointer rounded-[12px] px-6 py-1.5 text-base font-geologica font-semibold border transition
+              className={`cursor-pointer rounded-[12px] px-4 py-1 text-base font-geologica font-normal border transition
                 ${activeTab === "notes"
                   ? "bg-[var(--color-main)] text-white"
                   : "bg-[var(--color-main-light)] text-[var(--color-main)] border-[var(--color-main)]"
@@ -199,7 +199,7 @@ export default function CalendarPage() {
         </div>
 
         {/* ---- Info блок ---- */}
-        {event && <div
+        {event ? <div
           className={`
             flex-1 min-w-0 max-w-fit 2xl:max-w-[500px] flex flex-col gap-4 overflow-y-auto xl:h-[calc(100vh-64px)] !h-full no-scrollbar pb-4
             ${activeTab === "info" ? "" : "hidden xl:flex"}
@@ -216,6 +216,8 @@ export default function CalendarPage() {
               ))}
             </div>
           ) }
+        </div> : <div className={`flex-1 min-w-0 max-w-fit 2xl:max-w-[500px]  ${activeTab === "info" ? "" : "hidden xl:flex"} text-gray-400 italic flex flex-col gap-4 overflow-y-auto xl:h-[calc(100vh-64px)] !h-full no-scrollbar pb-4`}>
+          На выбранную дату нет событий
         </div>}
 
         {/* ---- Notes блок ---- */}
@@ -226,16 +228,16 @@ export default function CalendarPage() {
           `}
         >
           <div className="flex flex-row items-center gap-4 justify-between z-10 shadow-[0_16px_24px_12px_rgba(255,255,255,255.85)]">
-            <div className="text-3xl font-inter font-normal leading-none">
+            <div className="xl:text-3xl text-xl font-inter font-normal leading-none">
               Заметки
             </div>
             <Button
               gradient={false}
-              icon=""
+              icon="/icons/add_icon.png"
               label="Добавить"
               button={true}
               onClick={handleAddNoteClick}
-              className="!rounded-[10px] px-2 py-1 text-lg h-fit"
+              className="!rounded-[10px] px-2 py-1 text-md !font-normal h-fit"
             />
           </div>
           {/* Список заметок — только он скроллится! */}
@@ -261,7 +263,7 @@ export default function CalendarPage() {
 
           {/* Подсказка и ExplainLaw */}
           <div className="shadow-[0_-26px_10px_10px_rgba(255,255,255)] flex flex-col gap-2 items-start">
-            <span className="text-base text-[var(--color-dark)] w-[320px]">
+            <span className="text-base lg:text-[18px] text-[14px] text-[var(--color-dark)] lg:w-[320px] w-full">
               Не уверены в законе? Не стоит рисковать, спросите ИИ юриста explainLaw.
             </span>
             <Button
@@ -270,7 +272,7 @@ export default function CalendarPage() {
               label="Спросить ExplainLaw"
               href="https://explaingpt.ru"
               button={false}
-              className="!rounded-[20px] px-6 py-2 text-lg "
+              className="!lg:rounded-[20px] !rounded-[12px] lg:px-6 px-4 lg:py-2 py-1 lg:text-lg text-md w-full"
             />
           </div>
         </div>

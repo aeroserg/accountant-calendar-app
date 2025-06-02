@@ -63,9 +63,9 @@ export const NoteModal: React.FC<NoteModalProps> = ({
           onChange={e => onChangeTitle(e.target.value)}
           placeholder="Название заметки"
           className="
-            lg:w-1/2 w-full font-inter text-3xl font-medium bg-transparent mb-4
+            lg:w-1/2 w-full font-inter text-3xl font-medium bg-transparent xl:mb-4 mb-2
             border-0 border-b-2 border-b-transparent focus:border-b-[var(--color-main)]
-            focus:outline-none transition px-1 py-2
+            focus:outline-none transition px-1 py-2 xl:mt-0 mt-9
           "
         />
 
@@ -77,21 +77,21 @@ export const NoteModal: React.FC<NoteModalProps> = ({
           rows={10}
           className="
             w-full h-full resize-none font-inter text-base bg-[var(--color-main-light)]
-            rounded-[20px] p-6 mb-8 border-0 outline-none min-h-[180px] lg:max-h-[500px]
+            rounded-[20px] lg:p-6 p-3 lg:mb-8 mb-4 border-0 outline-none min-h-[180px] lg:max-h-[500px]
             focus:outline-[2px] focus:outline-[var(--color-main)] transition
           "
         />
 
         {/* Кнопки выбора даты и времени */}
-        <div className="flex flex-row flex-wrap gap-4 justify-between items-center mt-auto mb-6">
-          <div className="flex flex-row gap-4 flex-wrap">
+        <div className="flex flex-row flex-wrap lg:gap-4 gap-2 justify-between items-center mt-auto mb-6">
+          <div className="flex flex-row lg:gap-4 gap-2 flex-wrap">
             <Button
               gradient={false}
               icon="/icons/date_icon.png"
               label={date ? new Date(date).toLocaleDateString('ru-RU') : 'Дата'}
               button
               onClick={() => setShowDatePicker(true)}
-              className="!rounded-[14px] min-w-[120px] px-6 py-2"
+              className="!rounded-[14px] lg:min-w-[120px] lg:px-6 px-2 py-2"
             />
             <Button
               gradient={false}
@@ -99,7 +99,7 @@ export const NoteModal: React.FC<NoteModalProps> = ({
               label={time || 'Время'}
               button
               onClick={() => setShowTimePicker(true)}
-              className="!rounded-[14px] min-w-[120px] px-6 py-2"
+              className="!rounded-[14px] lg:min-w-[120px] lg:px-6 px-2 py-2"
             />
             <Button
               gradient={false}
@@ -119,7 +119,7 @@ export const NoteModal: React.FC<NoteModalProps> = ({
                 saveICS(ics, `${title || 'событие'}.ics`);
                 showToast('Событие добавлено в календарь!', 'success');
               }}
-              className="!rounded-[14px] min-w-[180px] px-6 py-2"
+              className="!rounded-[14px] lg:min-w-[180px] min-w-fit lg:px-6 px-2 py-2"
             />
             <Button
               gradient
@@ -128,17 +128,17 @@ export const NoteModal: React.FC<NoteModalProps> = ({
               href='https://explaingpt.ru'
               button={false}
               onClick={onAiClick}
-              className="!rounded-[14px]  h-[54px]  !py-0"
+              className="!rounded-[14px] lg:h-[54px] h-fit px-2 py-2 lg:p-0 "
             />
           </div>
-          <div className="flex flex-row gap-4 flex-wrap justify-end w-full lg:w-fit">
+          <div className="flex flex-row lg:gap-4 gap-2 mt-4 flex-wrap justify-end w-full lg:w-fit">
             {onDelete && <Button
               gradient={false}
               icon="/icons/delete_icon.png"
               label="Удалить"
               button
               onClick={onDelete}
-              className="!rounded-[14px] min-w-[120px] px-6 py-2"
+              className="!rounded-[14px] lg:min-w-[120px] lg:px-6 px-2 py-2"
             />}
             <Button
               gradient={false}
@@ -146,7 +146,7 @@ export const NoteModal: React.FC<NoteModalProps> = ({
               label="Сохранить"
               button
               onClick={onSave}
-              className="!rounded-[14px] min-w-[120px] px-6 py-2"
+              className="!rounded-[14px] lg:min-w-[120px] lg:px-6 px-2 py-2"
             />
           </div>
         </div>

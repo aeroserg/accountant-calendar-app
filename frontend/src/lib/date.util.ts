@@ -1,4 +1,4 @@
-// lib/date-availability.ts
+// lib/date.util.ts
 
 export const START_YEAR = 2025;
 /**

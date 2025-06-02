@@ -1,7 +1,8 @@
 "use client";
-
+// src/components/calendar/ui/MonthCard.tsx
 import React from "react";
 import { DayCell } from "@/components/calendar/ui/DayCell";
+import { getRuMonthInfinitiv } from "@/lib/date.util";
 
 // Типы для дня месяца
 export interface DayCellData {
@@ -35,8 +36,13 @@ export const MonthCard: React.FC<MonthCardProps> = ({
 
   // Определяем смещение для первой недели
   const firstDate = new Date(year, monthIndex(month), 1);
+  console.log(firstDate)
+
   let offset = firstDate.getDay() - weekStartsOn;
+  console.log(offset)
+
   if (offset < 0) offset += 7;
+  console.log(offset)
 
   // Календарная сетка с пустыми ячейками для смещения
   const calendarDays: (DayCellData | null)[] = [
@@ -51,7 +57,7 @@ export const MonthCard: React.FC<MonthCardProps> = ({
   return (
     <div className="bg-[var(--foreground)] md:rounded-[32px] rounded-[20px] lg:p-7 p-4 px-8 w-full md:w-[360px] shadow flex flex-col items-start">
       <div className="text-2xl font-inter font-normal mb-1">
-        {month}{" "}
+        {getRuMonthInfinitiv(monthIndex(month)+1)}{" "}
         <span className="text-2xl font-inter font-normal text-gray-500">
           {year}
         </span>
@@ -91,19 +97,16 @@ export const MonthCard: React.FC<MonthCardProps> = ({
 
 // Функция перевода месяца на индекс (RU)
 function monthIndex(month: string): number {
-  const ru = [
-    "Январь",
-    "Февраль",
-    "Март",
-    "Апрель",
-    "Май",
-    "Июнь",
-    "Июль",
-    "Август",
-    "Сентябрь",
-    "Октябрь",
-    "Ноябрь",
-    "Декабрь",
+  const nominative = [
+    "Январь","Февраль","Март","Апрель","Май","Июнь",
+    "Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь",
   ];
-  return ru.map((m) => m.toLowerCase()).indexOf(month.toLowerCase());
+  const genitive = [
+    "Января","Февраля","Марта","Апреля","Мая","Июня",
+    "Июля","Августа","Сентября","Октября","Ноября","Декабря",
+  ];
+  const idx = nominative.map(m => m.toLowerCase()).indexOf(month.toLowerCase());
+  if (idx !== -1) return idx;
+  return genitive.map(m => m.toLowerCase()).indexOf(month.toLowerCase());
 }
+
